@@ -1,0 +1,23 @@
+{#
+ # Searchform
+ #
+ # @package WordPress
+ # @subpackage CreatorFund
+ #
+ # @author Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
+ #}
+
+<form role="search" class="flex gap-4" method="get" class="search-form" action="{{ site.home_url | e( 'esc_url' ) }}">
+	<label for="search" class="sr-only">{{- __( 'Search&hellip;', 'creatorfund' ) -}}</label>
+	<input
+		type="search"
+		id="search"
+		class="w-full bg-transparent px-4 py-[0.6875rem] border border-current placeholder:text-theme-black"
+		placeholder="{{ __( 'Search&hellip;', 'creatorfund' ) }}"
+		value="{{ search_query }}"
+		name="s"
+	/>
+	<button type="submit" class="button justify-center" value="{{ __( 'Search', 'creatorfund' ) }}">
+		{{- __( 'Search', 'creatorfund' ) -}}
+	</button>
+</form>

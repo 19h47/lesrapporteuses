@@ -1,0 +1,12 @@
+{#
+ # About Page
+ #
+ # @package WordPress
+ # @subpackage CreatorFund
+ #}
+
+{% extends 'index.html.twig' %}
+
+{% block content %}
+	{{- include( 'blocks/blocks.html.twig', { blocks: post.meta( 'blocks' ) } ) -}}
+{% endblock %}

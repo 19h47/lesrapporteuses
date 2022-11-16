@@ -1,0 +1,125 @@
+{#
+ # Archive: Member
+ #
+ # @package WordPress
+ # @subpackage CreatorFund
+ #}
+
+{% extends 'index.html.twig' %}
+
+{% block content %}
+
+	<div class="space-y-8 lg:space-y-16">
+		{% for collection in post.collections %}
+			<div
+				class="container space-y-9"
+				data-module-load-more-posts
+				data-load-more-posts-found-posts="{{ collection.found_posts }}"
+				data-load-more-posts-posts-per-page="6"
+				data-load-more-posts-post-type="member"
+			>
+
+				<input type="hidden" name="found-posts" value="{{ collection.posts.found_posts }}">
+				<input
+					type="hidden"
+					data-load-more-posts="taxonomy"
+					name="{{ collection.category.taxonomy }}"
+					value="{{ collection.category.term_id }}"
+				>
+
+				<div class="row">
+					<div class="lg:col-8/12">
+						<h1 class="text-2xl lg:text-4xl font-bold opacity-0 has-dom-ready:opacity-100 duration-1000 ease-in-out transition-opacity">
+							{{- collection.category.name -}}
+						</h1>
+
+						{% if collection.category.description %}
+							<p class="font-light mt-4 lg:text-base opacity-0 has-dom-ready:opacity-100 duration-1000 ease-in-out transition-opacity">
+								{{- collection.category.description -}}
+							</p>
+						{% endif %}
+					</div>
+				</div>
+
+				{% if post.meta( 'filters' ) %}
+					<div class="row">
+						<div>
+							{% embed 'components/filters.html.twig' with { reset: true } %}
+								{% block body %}
+									{% import 'macros/forms.html.twig' as forms %}
+									{{- parent() -}}
+									{{-
+										forms.checkboxes(
+											{
+												attributes: { 'data-load-more-posts': 'filter' },
+												classes: [ 'w-24' ],
+												name: 'university',
+												options: get_terms( {
+													hide_empty: false,
+													object_ids: collection.ids,
+													orderby: 'term_order',
+													post_type: 'member',
+													taxonomy: 'university',
+												} ) | map( term => ( { value: term.term_id, title: term.name } ) ),
+												title: __( 'University', 'creatorfund' ),
+												id: loop.index
+											}
+										)
+									-}}
+								{% endblock %}
+							{% endembed %}
+						</div>
+					</div>
+				{% endif %}
+
+				<div class="row gap-y-6 lg:gap-y-10 transition-opacity duration-1000 ease-in-out" data-load-more-posts="container">
+					{{- include( 'components/collection-member.html.twig', { posts: collection.posts } ) -}}
+				</div>
+
+				<button
+					class="button mx-auto"
+					type="button"
+					data-load-more-posts="button"
+					style="display: {{ collection.found_posts > 6 ? 'block' : 'none' }}"
+				>
+					{{- __( 'Load more', 'creatorfund' ) -}}
+				</button>
+			</div>
+
+			{% if loop.last and ( post.meta( 'push' ).title or post.meta( 'push' ).content ) %}
+				<div>
+					<div class="container">
+						<div class="row">
+							<div class="lg:col-10/12 lg:ml-1/12">
+								<div class="bg-theme-pink px-6 py-8 lg:py-12">
+									<div class="row lg:items-end">
+										<div class="lg:col-5/10 lg:ml-1/10">
+											{% if post.meta( 'push' ).title %}
+												<h2 class="text-xl font-medium">{{- post.meta( 'push' ).title -}}</h2>
+											{% endif %}
+
+											{% if post.meta( 'push' ).content %}
+												<div class="wysiwyg text-sm mt-4">{{- post.meta( 'push' ).content -}}</div>
+											{% endif %}
+										</div>
+
+										{% if post.meta( 'push' ).link.url %}
+											<div class="lg:col-2/10 lg:ml-1/10 mt-6 lg:mt-0">
+												<a href="{{ post.meta( 'push' ).link.url }}" class="w-full button"{{ post.meta( 'push' ).link.target ? ' rel="noopener noreferer" target="_blank"' }}>
+													{{- post.meta( 'push' ).link.title -}}
+													{{- icon( 'arrow-right' ) -}}
+												</a>
+											</div>
+										{% endif %}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+
+		{% endfor %}
+	</div>
+
+{% endblock %}

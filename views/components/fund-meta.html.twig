@@ -1,0 +1,50 @@
+{#
+ # Fund: Meta
+ #
+ # @package WordPress
+ # @subpackage CreatorFund
+ #
+ # @author Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
+ #}
+
+{% if fund.meta( 'stage' ) or fund.meta( 'geographical_scope' ) or fund.meta( 'fund_size' ) or fund.meta( 'ticket_range' )  %}
+	<div class="{{ html_classes( 'row', 'text-sm mt-auto', classes | default( [] ) | join( ' ' ) ) }}">
+
+		{% if fund.meta( 'stage' ) or fund.meta( 'geographical_scope' ) %}
+			<div class="col-6/12 gap-y-4 flex flex-col">
+
+				{% if fund.meta( 'stage' ) %}
+					<div>
+						<p class="text-xs uppercase text-theme-red font-medium">{{- __( 'Stage', 'creatorfund' ) -}}</p>
+						{{- fund.meta( 'stage' ) -}}
+					</div>
+				{% endif %}
+
+				{% if fund.meta( 'geographical_scope' ) %}
+					<div>
+						<p class="text-xs uppercase text-theme-red font-medium">{{- __( 'Geographical scope', 'creatorfund' ) -}}</p>
+						{{- fund.meta( 'geographical_scope' ) -}}
+					</div>
+				{% endif %}
+			</div>
+		{% endif %}
+
+		{% if fund.meta( 'fund_size' ) or fund.meta( 'ticket_range' )  %}
+			<div class="col-6/12 gap-y-4 flex flex-col">
+				{% if fund.meta( 'fund_size' ) %}
+					<div>
+						<p class="text-xs uppercase text-theme-red font-medium">{{- __( 'Fund size', 'creatorfund' ) -}}</p>
+						{{- fund.meta( 'fund_size' ) -}}
+					</div>
+				{% endif %}
+
+				{% if fund.meta( 'ticket_range' ) %}
+					<div>
+						<p class="text-xs uppercase text-theme-red font-medium">{{- __( 'Ticket range', 'creatorfund' ) -}}</p>
+						{{- fund.meta( 'ticket_range' ) -}}
+					</div>
+				{% endif %}
+			</div>
+		{% endif %}
+	</div>
+{% endif %}

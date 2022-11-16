@@ -7,7 +7,7 @@
  */
 
 // Autoloader.
-// require_once get_template_directory() . '/vendor/autoload.php';
+require_once get_template_directory() . '/vendor/autoload.php';
 
-// Timber\Timber::init();
-// CreatorFund\Init::run_services();
+Timber\Timber::init();
+LesRapporteuses\Init::run_services();

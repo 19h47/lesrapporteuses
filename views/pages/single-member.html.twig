@@ -1,0 +1,102 @@
+{#
+ # Single: Member
+ #
+ # @package WordPress
+ # @subpackage CreatorFund
+ #}
+
+{% extends 'index.html.twig' %}
+
+{% block main %}
+
+	<main class="my-10 lg:my-20 space-y-20">
+		<div class="container">
+			<div class="row lg:items-center">
+				<div class="lg:col-5/12">
+					<h1 class="text-2xl lg:text-4xl font-bold lg:text-center">
+						{{- post.title -}}
+					</h1>
+
+					{% if post.meta( 'job_title' ) %}
+						<p class="text-sm uppercase tracking-wider font-bold mt-3 lg:text-center">
+							{{- post.meta( 'job_title' ) -}}
+						</p>
+					{% endif %}
+
+					{% if post.research_areas or post.universities %}
+						<div class="space-y-2 mt-8 lg:mt-5">
+							{% if post.research_areas %}
+
+								<div class="row">
+									<div class="col-4/12 lg:ml-2/12 mt-1.5">
+										<p class="text-xs uppercase tracking-wider font-bold">
+											{{- _n( 'Research Area:', 'Research Areas:', post.research_areas | length, 'creatorfund' ) | format( post.research_areas ) -}}
+										</p>
+									</div>
+									<div class="col-8/12 lg:col-6/12 mt-1.5 lg:mt-0">
+										<div class="flex flex-wrap gap-x-2 gap-y-1">
+											{%- for research_area in post.research_areas -%}
+												<p class="button button-rounded pr-4">{{- research_area -}}</p>
+											{% endfor %}
+										</div>
+									</div>
+								</div>
+							{% endif %}
+
+							{% if post.universities %}
+								<div class="row">
+									<div class="col-4/12 lg:ml-2/12 mt-1.5">
+										<p class="text-xs uppercase tracking-wider font-bold">
+											{{- _n( 'University:', 'Universities:', post.universities | length, 'creatorfund' ) | format( post.universities | length ) -}}
+										</p>
+									</div>
+									 <div class="col-8/12 lg:col-6/12 mt-1.5 lg:mt-0">
+										<div class="flex flex-wrap gap-x-2 gap-y-1">
+											{%- for university in post.universities -%}
+												<a href="{{ fn( 'add_query_arg', 'university_post_type', 'member', university.link ) | e( 'esc_url' ) }}" class="button button-rounded">
+													{{- university.meta( 'link' ).title ? university.meta( 'link' ).title :  university.name }}
+													{{- icon( 'arrow-right' ) -}}
+												</a>
+											{% endfor %}
+										</div>
+									</div>
+								</div>
+							{% endif %}
+						</div>
+					{% endif %}
+
+					{% if post.socials %}
+						<div class="lg:text-center">
+							<ul class="inline-flex gap-5 mt-6 lg:mt-8 text-theme-red">
+								{% for slug, url in post.socials %}
+									{% if url %}
+										<li>
+											<a href="{{ url }}" target="_blank" rel="noopener noreferer">
+												{{- icon( slug, { classes: [ 'w-4 h-4 block' ] } ) -}}
+											</a>
+										</li>
+									{% endif %}
+								{% endfor %}
+							</ul>
+						</div>
+					{% endif %}
+
+					{% if post.post_excerpt %}
+						<div class="mt-8 lg:mt-5 wysiwyg lg:text-center">
+							<p>{{- post.excerpt( { force: false, read_more: false } ) | nl2br -}}</p>
+						</div>
+					{% endif %}
+				</div>
+				<div class="lg:col-6/12 lg:ml-1/12 mt-10 lg:mt-0">
+					<div class="bg-theme-gray pb-[100%] relative">
+						{{- include( 'components/image.html.twig', { classes: [ 'absolute', 'inset-0', 'w-full', 'h-full', 'object-cover', 'object-center' ], image: post.thumbnail, size: 'size-6' } ) -}}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{{- include( 'blocks/blocks.html.twig', { blocks: post.meta( 'blocks' ) } ) -}}
+
+
+	</main>
+{% endblock %}

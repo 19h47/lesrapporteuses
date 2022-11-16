@@ -1,0 +1,16 @@
+{#
+ # Logo
+ #
+ # @package WordPress
+ # @subpackage LesRapporteuses
+ #
+ # @author Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
+ #}
+
+<a
+	class="{{ html_classes( classes | default( [] ) | join( ' ' ), 'block' ) }}"
+	href="{{ site.link | e( 'esc_url' ) }}"
+	aria-label="{{ site.title }}"
+>
+	{{- icon( 'logo', { classes: [ 'w-full', 'h-full' ] } ) -}}
+</a>

@@ -1,0 +1,276 @@
+{#
+ # Front Page
+ #
+ # @package WordPress
+ # @subpackage CreatorFund
+ #}
+
+{% extends 'index.html.twig' %}
+
+{% block header %}{% endblock %}
+
+{% block main %}
+
+	<div class="h-screen lg:h-auto lg:min-h-screen relative text-white flex items-end">
+
+		{{-
+			include(
+				'header.html.twig',
+				{
+					dark: true,
+					classes: [
+						'delay-700',
+						'opacity-0',
+						'has-dom-ready:opacity-100',
+						'duration-1000',
+						'ease-in-out',
+						'transition-opacity',
+						'absolute', 'inset-x-0', 'top-0', 'z-40'
+					]
+				}
+			)
+		-}}
+
+		{{- include( 'components/image.html.twig', {
+			classes: [ 'inset-0', 'absolute', 'z-0', 'w-full', 'h-full', 'object-cover', 'object-center' ],
+			image: post.meta( 'hero' ).image,
+			size: 'size-full'
+		} ) -}}
+
+
+
+		<div class="absolute inset-0 z-10 h-full">
+			{%
+				embed 'components/duotone.html.twig'
+				with {
+					classes: [
+						'h-full',
+						'has-dom-ready:opacity-100',
+						'opacity-0',
+						'transition-opacity',
+						'duration-[1500ms]',
+						'ease-in-out',
+					]
+				}
+			%}
+				{% block content %}
+					{{- include( 'components/image.html.twig', {
+						classes: [ 'w-full', 'h-full', 'object-cover', 'object-center' ],
+						image: post.meta( 'hero' ).image,
+						size: 'size-full'
+					} ) -}}
+				{% endblock %}
+			{% endembed %}
+		</div>
+
+		<div class="z-30 relative w-full py-10 lg:py-24">
+			<div class="container">
+				<div class="row">
+					<div class="lg:col-6/12 lg:ml-1/12">
+						<h1 class="text-4xl lg:text-[5.25rem] leading-none font-bold">
+							{{- include( 'components/split-text.html.twig', { text: post.meta( 'hero' ).title } ) -}}
+						</h1>
+						<div
+							class="opacity-0 mt-5 lg:mt-7 font-medium text-base lg:text-lg wysiwyg has-dom-ready:opacity-100 duration-1000 ease-in-out transition-opacity"
+							style="transition-delay: 1000ms;"
+						>
+							{{- post.meta( 'hero' ).content -}}
+						</div>
+
+						{% if post.meta( 'hero' ).links is iterable %}
+							<div
+								class="flex gap-2 mt-5 lg:mt-7 opacity-0 has-dom-ready:opacity-100 duration-1000 ease-in-out transition-opacity"
+								style="transition-delay: 1200ms;"
+							>
+								{% for item in post.meta( 'hero' ).links %}
+									<a
+										href="{{ item.link.url }}"
+										{{ item.link.target ? 'target="__blank" rel="noopener noreferer"' }}
+										class="{{ html_classes( item.style, 'text-sm' ) }}"
+									>
+										{{- item.link.title -}}
+										{{- icon( 'arrow-right' ) -}}
+									</a>
+								{% endfor %}
+							</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{% if post.case_studies or post.members or post.posts %}
+		<main class="my-10 lg:my-20">
+
+			<div class="space-y-20">
+
+				{% if post.case_studies | length %}
+					<div class="container space-y-7 lg:space-y-9">
+
+						<div class="row lg:items-end">
+							<div class="lg:col-6/12">
+								<h1 class="text-xl lg:text-2xl leading-tight font-bold">
+									{{- post.meta( 'case_studies' ).title -}}
+								</h1>
+
+								{% if post.meta(  'case_studies' ).content %}
+									<div class="font-light text-sm lg:text-base mt-2.5 lg:mt-4 opacity-0 has-dom-ready:opacity-100 duration-1000 ease-in-out transition-opacity">
+										{{- post.meta(  'case_studies' ).content -}}
+									</div>
+								{% endif %}
+							</div>
+
+							{% if post.meta( 'posts' ).link.url %}
+								<div class="lg:col-6/12 lg:flex justify-end hidden">
+									<a
+										class="button text-sm"
+										href="{{ post.meta( 'case_studies' ).link.url }}"
+										{{ post.meta( 'case_studies' ).link.target ? 'target="_blank" rel="noopener noreferer"' }}
+									>
+										{{- post.meta( 'case_studies' ).link.title -}}
+										{{- icon( 'arrow-right' ) -}}
+									</a>
+								</div>
+							{% endif %}
+						</div>
+
+						<div class="row gap-y-6 lg:gap-y-10">
+							{% for post in post.case_studies %}
+								<div class="sm:col-6/12 lg:col-3/12">
+									{{- include( 'components/tease-case-study.html.twig', { post: post, classes: [ 'h-full', 'lg:h-auto' ] } ) -}}
+								</div>
+							{% endfor %}
+
+							{% if post.meta( 'posts' ).link.url %}
+								<div class="lg:hidden text-center">
+
+									<a
+										class="button text-sm"
+										href="{{ post.meta( 'posts' ).link.url }}"
+										{{ post.meta( 'posts' ).link.target ? 'target="_blank" rel="noopener noreferer"' }}
+									>
+										{{- post.meta( 'posts' ).link.title -}}
+										{{- icon( 'arrow-right' ) -}}
+									</a>
+
+								</div>
+							{% endif %}
+						</div>
+					</div>
+				{% endif %}
+
+				{% if post.members | length %}
+					<div class="container space-y-7 lg:space-y-9">
+
+						<div class="row lg:items-end">
+							<div class="lg:col-6/12">
+								<h1 class="text-xl lg:text-2xl leading-tight font-bold">
+									{{- post.meta(  'members' ).title -}}
+								</h1>
+
+								{% if post.meta(  'members' ).content %}
+									<div class="font-light text-sm lg:text-base mt-2.5 lg:mt-4 opacity-0 has-dom-ready:opacity-100 duration-1000 ease-in-out transition-opacity">
+										{{- post.meta(  'members' ).content -}}
+									</div>
+								{% endif %}
+							</div>
+
+							{% if post.meta( 'posts' ).link.url %}
+								<div class="lg:col-6/12 lg:flex justify-end hidden">
+									<a
+										class="button text-sm"
+										href="{{ post.meta( 'members' ).link.url }}"
+										{{ post.meta( 'members' ).link.target ? 'target="_blank" rel="noopener noreferer"' }}
+									>
+										{{- post.meta( 'members' ).link.title -}}
+										{{- icon( 'arrow-right' ) -}}
+									</a>
+								</div>
+							{% endif %}
+						</div>
+
+						<div class="row gap-y-6 lg:gap-y-10">
+							{% for post in post.members %}
+								<div class="sm:col-6/12 lg:col-4/12">
+									{{- include( 'components/tease-member.html.twig', { post: post, classes: [ 'h-full', 'lg:h-auto' ]  } ) -}}
+								</div>
+							{% endfor %}
+
+							{% if post.meta( 'posts' ).link.url %}
+								<div class="lg:hidden text-center">
+
+									<a
+										class="button text-sm"
+										href="{{ post.meta( 'posts' ).link.url }}"
+										{{ post.meta( 'posts' ).link.target ? 'target="_blank" rel="noopener noreferer"' }}
+									>
+										{{- post.meta( 'posts' ).link.title -}}
+										{{- icon( 'arrow-right' ) -}}
+									</a>
+
+								</div>
+							{% endif %}
+						</div>
+					</div>
+				{% endif %}
+
+				{% if post.posts | length %}
+					<div class="container space-y-7 lg:space-y-9">
+
+						<div class="row lg:items-end">
+							<div class="lg:col-6/12">
+								<h1 class="text-xl lg:text-2xl leading-tight font-bold">
+									{{- post.meta(  'posts' ).title -}}
+								</h1>
+
+								{% if post.meta(  'posts' ).content %}
+									<div class="font-light text-sm lg:text-base mt-2.5 lg:mt-4">
+										{{- post.meta(  'posts' ).content -}}
+									</div>
+								{% endif %}
+							</div>
+
+							{% if post.meta( 'posts' ).link.url %}
+								<div class="lg:col-6/12 lg:flex justify-end hidden">
+									<a
+										class="button text-sm"
+										href="{{ post.meta( 'posts' ).link.url }}"
+										{{ post.meta( 'posts' ).link.target ? 'target="_blank" rel="noopener noreferer"' }}
+									>
+										{{- post.meta( 'posts' ).link.title -}}
+										{{- icon( 'arrow-right' ) -}}
+									</a>
+								</div>
+							{% endif %}
+						</div>
+
+						<div class="row gap-y-6 lg:gap-y-10">
+							{% for post in post.posts %}
+								<div class="sm:col-6/12 lg:col-3/12">
+									{{- include( 'components/tease-post.html.twig', { post: post, classes: [ 'h-full', 'lg:h-auto' ] } ) -}}
+								</div>
+							{% endfor %}
+
+							{% if post.meta( 'posts' ).link.url %}
+								<div class="lg:hidden text-center">
+
+									<a
+										class="button text-sm"
+										href="{{ post.meta( 'posts' ).link.url }}"
+										{{ post.meta( 'posts' ).link.target ? 'target="_blank" rel="noopener noreferer"' }}
+									>
+										{{- post.meta( 'posts' ).link.title -}}
+										{{- icon( 'arrow-right' ) -}}
+									</a>
+
+								</div>
+							{% endif %}
+						</div>
+					</div>
+				{% endif %}
+			</div>
+		</main>
+	{% endif %}
+
+{% endblock %}

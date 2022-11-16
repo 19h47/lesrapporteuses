@@ -1,0 +1,28 @@
+{#
+ # Filters
+ #
+ # @package WordPress
+ # @subpackage CreatorFund
+ #
+ # @author Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
+ #}
+
+<{{ reset ? 'form' : 'div' }} class="flex flex-col lg:flex-row lg:space-x-8 lg:items-center text-sm border-t border-b border-theme-black py-4">
+
+	<div class="flex space-x-4 items-center">
+		{% block header %}
+			{% if reset %}
+				<button type="reset" class="button" data-load-more-posts="reset">{{- __( 'All', 'creatorfund' ) -}}</button>
+			{% endif %}
+		{% endblock %}
+	</div>
+
+
+
+	<div class="flex flex-col lg:flex-row space-y-4 lg:space-y-0 border-t border-theme-black lg:border-none mt-4 pt-4 lg:pt-0 lg:mt-0 lg:space-x-8 lg:items-center">
+		{% block body %}
+			<p>{{- __( 'Filter:', 'creatorfund' ) -}}</p>
+		{% endblock %}
+	</div>
+
+</{{ reset ? 'form' : 'div' }}>

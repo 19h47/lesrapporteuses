@@ -1,0 +1,10 @@
+@import './base/base';
+
+@import './components/button';
+
+@import './utilities/grid';
+@import './utilities/scrollbar';
+@import './utilities/wysiwyg';
+
+@tailwind components;
+@tailwind utilities;

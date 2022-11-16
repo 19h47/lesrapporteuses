@@ -1,0 +1,75 @@
+{#
+ # Collection: Post
+ #
+ # @package WordPress
+ # @subpackage CreatorFund
+ #
+ # @author Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
+ #}
+
+<div class="row gap-y-6 lg:gap-y-10">
+	{% for post in posts[:7] %}
+		<div class="{{ loop.index == 7 ? 'lg:col-6/12' : 'lg:col-3/12'  }}">
+			{{-
+				include(
+					'components/tease-post.html.twig',
+					{
+						classes: [ 'lg:h-full' ],
+						post: post,
+						size: loop.index == 7 ? 'size-6' : 'size-3'
+					}
+				)
+			-}}
+		</div>
+	{% endfor %}
+</div>
+
+{% if posts | length > 7 %}
+	<div class="row mt-6 lg:mt-10">
+		<div class="lg:col-6/12">
+			<a href="{{ posts[7].link }}" class="pb-2.5 border-b block group border-theme-red lg:h-full">
+				<div class="h-[16.5rem] lg:h-[39.6875rem] bg-theme-gray relative overflow-hidden">
+					<div class="absolute mt-3 mx-4 uppercase font-medium tracking-widest text-xs text-white inset-x-0 top-0 z-20">
+						{{- posts[7].terms( { taxonomy: 'category' } ) | join( ', ' ) -}}
+					</div>
+					{{- include( 'components/image.html.twig', {
+						classes: [
+							'transition-transform',
+							'duration-1000',
+							'ease-in-out',
+							'group-hover:scale-105',
+							'group-focus:scale-105',
+							'w-full', 'h-full', 'object-cover', 'object-center'
+						],
+						image: posts[7].thumbnail,
+						size: 'size-6'
+					} ) -}}
+				</div>
+				<div class="mt-4 flex justify-between">
+					<p class="text-base font-light">{{ posts[7].title }}</p>
+					<p class="button-circle flex-shrink-0 ml-3">{{- icon( 'arrow-right' ) -}}</p>
+				</div>
+			</a>
+		</div>
+
+		{% if posts | length > 8 %}
+			<div class="lg:col-6/12 mt-6 lg:mt-0">
+				<div class="row gap-y-6 lg:gap-y-10">
+					{% for post in posts[8:] %}
+						<div class="lg:col-6/12">
+							{{-
+								include(
+									'components/tease-post.html.twig',
+									{
+										classes: [ 'lg:h-full' ],
+										post: post,
+									}
+								)
+							-}}
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		{% endif %}
+	</div>
+{% endif %}

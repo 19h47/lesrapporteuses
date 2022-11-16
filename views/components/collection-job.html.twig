@@ -1,0 +1,29 @@
+{#
+ # Collection: Job
+ #
+ # @package WordPress
+ # @subpackage CreatorFund
+ #
+ # @author Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
+ #}
+
+{% for job in posts %}
+	<div class="lg:col-6/12">
+		<article class="border-theme-black border-b py-5 flex items-start gap-x-6 lg:gap-x-9 h-full">
+			<div class="{{ html_classes( 'flex-shrink-0', 'h-16', 'w-24', job.thumbnail ? '' : 'bg-theme-gray' ) }}">
+				{{- include( 'components/image.html.twig', { size: 'size-1', image: job.thumbnail, classes: [ 'w-full', 'h-full', 'object-center', 'object-contain' ] } ) -}}
+			</div>
+			<div class="flex-grow">
+				<h3 class="text-lg">{{ job.title }}</h3>
+				<p class="font-light">{{ job.terms( { taxonomy: 'company' } ) | join( ', ' ) }}</p>
+				<p class="text-sm font-light">{{ job.terms( { taxonomy: 'location' } ) | join( ', ' ) }}</p>
+			</div>
+
+			<a class="flex-shrink-0 button mt-auto" href="{{ job.link }}">
+				<span class="lg:hidden">{{- __( 'Read', 'creatorfund' ) -}}</span>
+				<span class="hidden lg:inline">{{- __( 'Read more', 'creatorfund' ) -}}</span>
+				{{- icon( 'arrow-right' ) -}}
+			</a>
+		</article>
+	</div>
+{% endfor %}

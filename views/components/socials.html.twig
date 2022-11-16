@@ -1,0 +1,23 @@
+{#
+ # Socials
+ #
+ # @package WordPress
+ # @subpackage LesRapporteuses
+ #
+ # @author Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
+ #}
+
+{% if socials is iterable %}
+	<ul class="{{ html_classes( 'flex', 'gap-2', classes | default( [] ) | join( ' ' ) ) }}">
+		{% for social in socials %}
+			<li>
+				<a
+					class="{{ html_classes( 'button-circle', dark ? 'button-dark' ) }}"
+					href="{{ social.url }}" target="_blank" rel="noopener noreferer"
+				>
+					{{- icon( social.slug ) -}}
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endif %}
