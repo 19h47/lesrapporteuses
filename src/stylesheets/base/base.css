@@ -19,6 +19,10 @@
 		font-size: var(--base-font-size-unitless);
 	}
 
+	body {
+		@apply font-body;
+	}
+
 	strong,
 	b {
 		@apply font-bold;
@@ -30,5 +34,22 @@
 				var(--base-font-size-unitless) * 100vw / var(--prototype-width-unitless)
 			);
 		}
+	}
+
+	/* Futura */
+	@font-face {
+		font-family: "Futura";
+		src: url("../fonts/futura-bold.woff2") format("woff2");
+		font-weight: 700;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: "Futura";
+		src: url("../fonts/futura.woff2") format("woff2");
+		font-weight: 400;
+		font-style: normal;
+		font-display: swap;
 	}
 }

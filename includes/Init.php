@@ -32,6 +32,7 @@ class Init {
 			WPImageEditor::class,
 			WPQuery::class,
 			Media::class,
+			Plugins\ACF\FrontPageFields::class,
 		);
 	}
 

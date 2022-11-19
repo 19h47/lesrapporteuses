@@ -5,4 +5,21 @@
  # @subpackage LesRapporteuses
  # @author Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
  #}
-HEADER
+
+<header class="my-8 lg:my-24">
+	<div class="container">
+		<div class="row">
+			<div class="flex justify-between items-center">
+				{{- include( 'components/logo.html.twig', { classes: [ 'h-8', 'w-56' ] } ) -}}
+
+				<div class="ml-auto lg:flex lg:gap-x-4">
+					{{- include( 'components/socials.html.twig', { classes: [ 'hidden', 'lg:flex' ] } ) -}}
+
+					{%- embed 'components/button-rounded.html.twig' -%}
+						{% block title %}{{- icon( 'bars', { classes: [ 'w-5', 'h-5' ] } ) -}}{% endblock %}
+					{%- endembed -%}
+				</div>
+			</div>
+		</div>
+	</div>
+</header>

@@ -24,7 +24,7 @@
 		{% endif %}
 
 		<img
-			class="{{ classes ? classes | join( ' ' ) : '' }}"
+			class="{{ html_classes( classes | default( [] ) | join( ' ' ) ) }}"
 			loading="{{ loading | default( 'lazy' ) }}"
 			src="{{ image.src( size | default( 'full' ) ) }}"
 			alt="{{ image.alt }}"

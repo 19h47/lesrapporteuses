@@ -8,15 +8,12 @@
  #}
 
 {% if socials is iterable %}
-	<ul class="{{ html_classes( 'flex', 'gap-2', classes | default( [] ) | join( ' ' ) ) }}">
+	<ul class="{{ html_classes( 'gap-4', classes | default( [ 'flex' ] ) | join( ' ' ) ) }}">
 		{% for social in socials %}
 			<li>
-				<a
-					class="{{ html_classes( 'button-circle', dark ? 'button-dark' ) }}"
-					href="{{ social.url }}" target="_blank" rel="noopener noreferer"
-				>
-					{{- icon( social.slug ) -}}
-				</a>
+				{%- embed 'components/button-rounded.html.twig' with { attributes: { href: social.url, target: '_blank', rel: 'noopener noreferer' }, tag: 'a' } -%}
+					{% block title %}{{- icon( social.slug, { classes: [ 'w-5', 'h-5' ] } ) -}}{% endblock %}
+				{%- endembed -%}
 			</li>
 		{% endfor %}
 	</ul>

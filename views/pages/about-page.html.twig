@@ -2,11 +2,17 @@
  # About Page
  #
  # @package WordPress
- # @subpackage CreatorFund
+ # @subpackage LesRapporteuses
  #}
 
 {% extends 'index.html.twig' %}
 
 {% block content %}
-	{{- include( 'blocks/blocks.html.twig', { blocks: post.meta( 'blocks' ) } ) -}}
+	<div class="container">
+		<div class="row">
+			<div>
+				ABOUT
+			</div>
+		</div>
+	</div>
 {% endblock %}

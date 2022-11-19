@@ -8,7 +8,7 @@
 
 @layer utilities {
 	.container {
-		@apply max-w-[73.125rem] mx-auto px-4;
+		@apply max-w-[73.25rem] mx-auto px-4;
 	}
 
 	.row {
