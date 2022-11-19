@@ -104,6 +104,42 @@ class FrontPageFields {
 							),
 						),
 					),
+					array(
+						'key'        => 'field_front_page_colors',
+						'label'      => __( 'Colors', 'lesrapporteuses' ),
+						'name'       => 'colors',
+						'type'       => 'group',
+						'layout'     => 'block',
+						'sub_fields' => array(
+							array(
+								'key'     => 'field_front_page_colors_0',
+								'label'   => __( 'Color', 'lesrapporteuses' ),
+								'name'    => 0,
+								'type'    => 'color_picker',
+								'wrapper' => array(
+									'width' => 100 / 3,
+								),
+							),
+							array(
+								'key'     => 'field_front_page_colors_1',
+								'label'   => __( 'Color', 'lesrapporteuses' ),
+								'name'    => 1,
+								'type'    => 'color_picker',
+								'wrapper' => array(
+									'width' => 100 / 3,
+								),
+							),
+							array(
+								'key'     => 'field_front_page_colors_2',
+								'label'   => __( 'Color', 'lesrapporteuses' ),
+								'name'    => 2,
+								'type'    => 'color_picker',
+								'wrapper' => array(
+									'width' => 100 / 3,
+								),
+							),
+						),
+					),
 				),
 			),
 		);

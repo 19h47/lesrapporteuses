@@ -14,7 +14,7 @@
 
 			<div class="flex lg:relative lg:z-1">
 				<div class="w-3/12">
-					<div class="w-full pb-[200%] rounded-r-full relative" style="background-color: #305631;">
+					<div class="w-full pb-[200%] rounded-r-full relative" style="background-color: {{ post.meta( 'hero' ).colors[0] | default( '#000000' ) }};">
 						<div class="absolute inset-0 my-10 mx-7 hidden lg:block">
 							<div class="[writing-mode:tb-rl] -rotate-180 uppercase text-white tracking-widest">
 								{{- __( 'Agency', 'lesrapporteuses' ) -}}
@@ -23,7 +23,7 @@
 					</div>
 				</div>
 				<div class="w-6/12">
-					<div class="w-full pb-[100%] rounded-full relative overflow-hidden" style="background-color: #C8B196;">
+					<div class="w-full pb-[100%] rounded-full relative overflow-hidden" style="background-color: {{ post.meta( 'hero' ).colors[1] | default( '#000000' ) }};">
 						<div class="absolute inset-0 flex">
 							<div class="w-1/2 text-right text-xl mt-auto mb-16 px-10 hidden lg:block">
 								{{- post.meta('hero').content | nl2br -}}
@@ -35,7 +35,7 @@
 					</div>
 				</div>
 				<div class="w-3/12">
-					<div class="w-full pb-[200%] rounded-r-full relative overflow-hidden" style="background-color: #000000;">
+					<div class="w-full pb-[200%] rounded-r-full relative overflow-hidden" style="background-color: {{ post.meta( 'hero' ).colors[2] | default( '#000000' ) }};">
 						{{- include( 'components/image.html.twig', { image: post.meta( 'hero' ).images[1], size: 'size-2', classes: [ 'absolute', 'inset-0', 'w-full', 'h-1/2', 'mt-auto', 'object-cover', 'object-center', 'block' ] } ) -}}
 					</div>
 				</div>
