@@ -73,6 +73,6 @@ class Supports {
 	 * @return void
 	 */
 	public function remove_post_type_supports() {
-		remove_post_type_support( 'page', 'editor' );
+		// remove_post_type_support( 'page', 'editor' );
 	}
 }

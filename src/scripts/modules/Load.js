@@ -15,7 +15,7 @@ class Load extends M {
 
 			this.call('close', null, 'Nav', 'main');
 
-			oldContainer.style.setProperty('opactiy', '0.3');
+			oldContainer.style.setProperty('opacity', '0.3');
 		});
 
 		this.load.on('loaded', (_, oldContainer, newContainer) => {

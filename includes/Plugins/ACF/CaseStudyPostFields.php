@@ -3,10 +3,10 @@
  * Case Study Post Fields
  *
  * @package WordPress
- * @subpackage CreatorFund
+ * @subpackage LesRapporteuses
  */
 
-namespace CreatorFund\Plugins\ACF;
+namespace LesRapporteuses\Plugins\ACF;
 
 /**
  * Case Study Post Fields
@@ -40,114 +40,52 @@ class CaseStudyPostFields {
 		if ( function_exists( 'acf_add_local_field_group' ) ) {
 			acf_add_local_field_group(
 				array(
-					'key'        => 'group_case_study',
-					'title'      => __( 'Case Study Post Fields', 'creatorfund' ),
+					'key'        => 'group_case_study_post',
+					'title'      => __( 'Case Study Post Fields', 'lesrapporteuses' ),
 					'fields'     => array(
 						array(
-							'key'           => 'field_case_study_related_posts',
-							'label'         => __( 'Related Posts', 'creatorfund' ),
-							'name'          => 'related_posts',
-							'type'          => 'relationship',
-							'post_type'     => array( 'post' ),
-							'filters'       => array(
-								'search',
-							),
-							'max'           => 3,
-							'return_format' => 'id',
-							'instructions'  => __( 'Select up to 3 related posts.', 'creatorfund' ),
+							'key'   => 'field_post_color',
+							'label' => __( 'Color', 'lesrapporteuses' ),
+							'name'  => 'color',
+							'type'  => 'color_picker',
 						),
 						array(
-							'key'           => 'field_case_study_post_logo',
-							'label'         => __( 'Logo', 'creatorfund' ),
-							'name'          => 'logo',
-							'type'          => 'image',
-							'return_format' => 'id',
-							'preview_size'  => 'medium',
-							'library'       => 'all',
-							'instructions'  => __( 'Upload the logo for the case study.', 'creatorfund' ),
-
-						),
-						array(
-							'key'        => 'field_case_study_post_socials',
-							'label'      => __( 'Socials', 'creatorfund' ),
-							'name'       => 'socials',
-							'type'       => 'group',
-							'sub_fields' => array(
-								array(
-									'key'          => 'field_case_study_post_socials_facebook',
-									'label'        => __( 'Facebook', 'creatorfund' ),
-									'name'         => 'facebook',
-									'type'         => 'url',
-									'placeholder'  => 'https://facebook.com/username',
-									'wrapper'      => array( 'width' => 50 ),
-									'instructions' => __( 'The Facebook URL of the case study.', 'creatorfund' ),
-								),
-								array(
-									'key'          => 'field_case_study_post_socials_twitter',
-									'label'        => __( 'Twitter', 'creatorfund' ),
-									'name'         => 'twitter',
-									'type'         => 'url',
-									'placeholder'  => 'https://twitter.com/username',
-									'wrapper'      => array( 'width' => 50 ),
-									'instructions' => __( 'The Twitter URL of the case study.', 'creatorfund' ),
-								),
-								array(
-									'key'          => 'field_case_study_post_socials_instagram',
-									'label'        => __( 'Instagram', 'creatorfund' ),
-									'name'         => 'instagram',
-									'type'         => 'url',
-									'placeholder'  => 'https://instagram.com/username',
-									'wrapper'      => array( 'width' => 50 ),
-									'instructions' => __( 'The Instagram URL of the case study.', 'creatorfund' ),
-								),
-								array(
-									'key'          => 'field_case_study_post_socials_medium',
-									'label'        => __( 'Medium', 'creatorfund' ),
-									'name'         => 'medium',
-									'type'         => 'url',
-									'placeholder'  => 'https://medium.com/username',
-									'wrapper'      => array( 'width' => 50 ),
-									'instructions' => __( 'The Medium URL of the case study.', 'creatorfund' ),
-								),
-								array(
-									'key'          => 'field_case_study_post_socials_linkedin',
-									'label'        => __( 'LinkedIn', 'creatorfund' ),
-									'name'         => 'linkedin',
-									'type'         => 'url',
-									'placeholder'  => 'https://linkedin.com/username',
-									'wrapper'      => array( 'width' => 50 ),
-									'instructions' => __( 'The LinkedIn URL of the case study.', 'creatorfund' ),
-								),
-							),
-						),
-						array(
-							'key'         => 'field_case_study_post_link',
-							'label'       => __( 'Link', 'creatorfund' ),
-							'name'        => 'link',
-							'type'        => 'url',
-							'placeholder' => 'https://example.com/',
-							'wrapper'     => array( 'width' => 50 ),
-						),
-						array(
-							'key'         => 'field_case_study_post_investment_year',
-							'label'       => __( 'Investment Year', 'creatorfund' ),
-							'name'        => 'investment_year',
+							'key'         => 'field_case_study_post_client',
+							'label'       => __( 'Client', 'lesrapporteuses' ),
+							'name'        => 'client',
 							'type'        => 'text',
-							'placeholder' => __( '1986', 'creatorfund' ),
-							'wrapper'     => array( 'width' => 50 ),
+							'placeholder' => __( 'Client', 'lesrapporteuses' ),
 						),
 						array(
-							'key'         => 'field_case_study_introduction',
-							'label'       => __( 'List Excerpt', 'creatorfund' ),
-							'name'        => 'list_excerpt',
+							'key'         => 'field_case_study_post_description',
+							'label'       => __( 'Description', 'lesrapporteuses' ),
+							'name'        => 'description',
 							'type'        => 'textarea',
-							'rows'        => 4,
 							'new_lines'   => 'br',
-							'placeholder' => __( 'Excerpt', 'creatorfund' ),
+							'rows'        => 2,
+							'placeholder' => __( 'Description', 'lesrapporteuses' ),
+						),
+						array(
+							'key'         => 'field_case_study_post_credits',
+							'label'       => __( 'Credits', 'lesrapporteuses' ),
+							'name'        => 'credits',
+							'type'        => 'textarea',
+							'new_lines'   => 'br',
+							'rows'        => 3,
+							'placeholder' => __( 'Credits', 'lesrapporteuses' ),
+						),
+						array(
+							'key'         => 'field_case_study_post_content',
+							'label'       => __( 'Content', 'lesrapporteuses' ),
+							'name'        => 'content',
+							'type'        => 'textarea',
+							'new_lines'   => 'br',
+							'rows'        => 4,
+							'placeholder' => __( 'Content', 'lesrapporteuses' ),
 						),
 					),
 					'location'   => $location,
-					'menu_order' => 3,
+					'menu_order' => 0,
 				),
 			);
 		}

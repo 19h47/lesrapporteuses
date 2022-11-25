@@ -7,12 +7,36 @@
 
 {% extends 'index.html.twig' %}
 
-{% block content %}
+{% block main %}
 	<div class="container">
-		<div class="row">
-			<div>
-				ABOUT
+		<div class="row items-center">
+			<div class="lg:ml-1/12 lg:col-5/12">
+				<div class="p-8 relative after:absolute after:bottom-0 after:left-0 after:bg-black after:z-1 after:rounded-bl-full after:w-1/2 after:h-1/2">
+					<div class="rounded-full pb-[100%] relative overflow-hidden">
+						{{- include( 'components/image.html.twig', { classes: [ 'z-2', 'absolute', 'inset-0', 'w-full', 'h-full' ], size: 'size-5', image: post.meta( 'hero' ).image } ) -}}
+					</div>
+				</div>
+			</div>
+
+			<div class="lg:col-5/12 font-medium mt-5 lg:mt-0">
+				<h1 class="flex items-center before:rounded-tl-full before:mr-8 text-xl before:bg-[#C8B196] before:w-[5.75rem] before:h-[5.75rem] before:block">
+					<span>
+						{{- post.meta( 'hero' ).title -}}
+					</span>
+				</h1>
+
+				<p class="mt-8 lg:mt-16">{{- post.meta( 'hero' ).content -}}</p>
 			</div>
 		</div>
 	</div>
+
+	{% if post.blocks %}
+		<div class="container mt-20">
+			<div class="row">
+				<div class="lg:col-10/12 lg:ml-1/12 flex flex-col gap-y-2 lg:gap-y-6">
+					{{- include( 'blocks/blocks.html.twig', { blocks: post.blocks } ) -}}
+				</div>
+			</div>
+		</div>
+	{% endif %}
 {% endblock %}

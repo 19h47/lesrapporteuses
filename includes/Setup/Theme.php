@@ -10,6 +10,7 @@ namespace LesRapporteuses\Setup;
 
 use Timber\{ Timber, Site };
 use Twig\Extra\Html\{ HtmlExtension };
+use Twig\Extra\Intl\{ IntlExtension };
 use Twig\{ TwigFunction };
 
 use WP_Post;
@@ -142,6 +143,7 @@ class Theme extends Site {
 		);
 
 		$twig->addExtension( new HtmlExtension() );
+		$twig->addExtension( new IntlExtension() );
 
 		return $twig;
 	}

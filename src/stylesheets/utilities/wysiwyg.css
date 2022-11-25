@@ -8,6 +8,50 @@
 
 @layer utilities {
 	.wysiwyg {
+	}
 
+	.wysiwyg > *:first-child {
+		@apply mt-0;
+	}
+
+	.wysiwyg > *:last-child {
+		@apply mb-0;
+	}
+
+	.wysiwyg p,
+	.wysiwyg h2,
+	.wysiwyg h3,
+	.wysiwyg h4,
+	.wysiwyg > figure,
+	.wysiwyg > img {
+		@apply mb-4;
+	}
+
+	.wysiwyg h2 {
+		@apply font-bold text-2xl;
+	}
+
+	.wysiwyg h3 {
+		@apply font-bold text-xl;
+	}
+
+	.wysiwyg h4 {
+		@apply font-bold text-lg;
+	}
+
+	.wysiwyg ul {
+		@apply my-4 pl-10 list-disc;
+	}
+
+	.wysiwyg li {
+		@apply my-2;
+	}
+
+	.wysiwyg li:first-of-type {
+		@apply mt-0;
+	}
+
+	.wysiwyg li:last-of-type {
+		@apply mb-0;
 	}
 }

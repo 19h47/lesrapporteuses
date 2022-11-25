@@ -1,0 +1,88 @@
+{%- for b in blocks -%}
+	{%- if 'image' == b.acf_fc_layout -%}
+		<div class="row">
+			<div>
+				{{-
+					include(
+						'components/image.html.twig',
+						{
+							classes: [ 'block', 'w-full', 'h-auto', 'duration-1000', 'ease-in-out', 'transition-opacity', 'opacity-0', 'is-inview:opacity-100' ],
+							image: b.image ,
+							size: 'size-10',
+							attributes: {
+								'data-scroll': ''
+							}
+						}
+					)
+				-}}
+			</div>
+		</div>
+	{%- endif -%}
+
+	{%- if 'two_images' == b.acf_fc_layout -%}
+		<div class="row">
+			{% for image in b.images %}
+				<div class="col-6/12">
+					{{-
+						include(
+							'components/image.html.twig',
+							{
+								classes: [ 'block', 'w-full', 'h-full', 'object-cover', 'object-center', 'duration-1000', 'ease-in-out', 'transition-opacity', 'opacity-0', 'is-inview:opacity-100' ],
+								image: image ,
+								size: 'size-5',
+								attributes: {
+									'data-scroll': ''
+								}
+							}
+						)
+					-}}
+				</div>
+			{% endfor %}
+		</div>
+	{%- endif -%}
+
+	{%- if 'title_content' == b.acf_fc_layout -%}
+		<div class="font-medium {{ loop.last and loop.first ? '' : ( loop.last ? 'mt-5 lg:mt-10' : ( loop.first ? 'mb-5 lg:mb-10' : 'my-5 lg:my-10' ) ) }}">
+			<div class="row items-end">
+				<div class="lg:col-4/12">
+					<h1 class="text-2xl lg:text-4xl font-bold">{{- b.title -}}</h1>
+				</div>
+
+				<div class="lg:col-8/12 mt-5 lg:mt-0"><hr class="bg-black w-full h-[0.0625rem]"></div>
+			</div>
+
+			<div class="row mt-5 lg:mt-10">
+				<div class="wysiwyg">
+					{{- b.content -}}
+				</div>
+			</div>
+		</div>
+	{%- endif -%}
+
+	{%- if 'title_list' == b.acf_fc_layout -%}
+		<div class="font-medium {{ loop.last and loop.first ? '' : ( loop.last ? 'mt-5 lg:mt-10' : ( loop.first ? 'mb-5 lg:mb-10' : 'my-5 lg:my-10' ) ) }}">
+			<div class="row items-end">
+				<div class="lg:col-4/12">
+					<h1 class="text-2xl lg:text-4xl font-bold">{{- b.title -}}</h1>
+				</div>
+
+				<div class="lg:col-8/12 mt-5 lg:mt-0"><hr class="bg-black w-full h-[0.0625rem]"></div>
+			</div>
+
+			<div class="row mt-5 lg:mt-10">
+				{% set index = 1 %}
+				{% for row in b.list | batch( b.list | length / 2 ) %}
+					<div class="lg:col-6/12 space-y-5 {{ loop.first and loop.last ? '' : ( loop.last ? 'mt-5 lg:mt-0' : '' ) }}">
+						{% for item in row %}
+							<div>
+								<p class="text-xl">{{- index | format_number( { min_integer_digit: '2' } ) -}}&nbsp;{{- item.title -}}</p>
+								<p>{{- item.content -}}</p>
+							</div>
+							{% set index = index + 1 %}
+						{% endfor %}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	{%- endif -%}
+{%- endfor -%}

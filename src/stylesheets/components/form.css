@@ -1,0 +1,14 @@
+/*
+ * Form
+ *
+ * @author Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
+ * @package WordPress
+ * @subpackage LesRapporteuses
+ */
+
+@layer components {
+	form .error-message,
+	form .success-message {
+		@apply text-xs text-left text-red-600 mt-3;
+	}
+}

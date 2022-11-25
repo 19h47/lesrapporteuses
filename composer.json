@@ -4,7 +4,8 @@
 		"19h47/wp-form-controls": "dev-master",
 		"19h47/wp-sanitize-title-with-underscores": "dev-master",
 		"19h47/wp-get-theme": "dev-master",
-		"twig/html-extra": "^3.3"
+		"twig/html-extra": "^3.3",
+		"twig/intl-extra": "^3.4"
 	},
 	"name": "19h47/lesrapporteuses",
 	"description": "Les Rapporteuses",

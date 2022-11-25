@@ -30,18 +30,44 @@
 		class="cursor-wait"
 	>
 
-		<div data-load-container data-url="{{ current_url }}">
-			<div id="{{ post.id ? "page-#{post.id}" : 'page' }}" {{ body_class( 'page-content' ) }}>
+		<div data-load-container data-url="{{ current_url }}" class="duration-1000 ease-in-out transition-opacity">
+			<div id="{{ post.id ? "page-#{post.id}" : 'page' }}" {{ body_class( 'page-content' ) }} data-module-scroll="main">
 
 				{% block header %}
 					{{- include( 'header.html.twig', { classes: [] } ) -}}
 				{% endblock %}
 
-				{% block main %}
-					<main class="">
-						MAIN
-					</main>
-				{% endblock %}
+				<main>
+					{% block main %}
+						<div class="container">
+							<div class="row items-end">
+								<div class="lg:col-4/12 lg:ml-1/12">
+									<h1 class="text-2xl lg:text-5xl font-bold">{{- post.title -}}</h1>
+								</div>
+
+								<div class="lg:col-6/12 mt-5 lg:mt-0"><hr class="bg-black w-full h-[0.0625rem]"></div>
+							</div>
+
+							{% if post.content %}
+								<div class="row mt-5 lg:mt-10">
+									<div class="lg:col-10/12 lg:ml-1/12 wysiwyg">
+										{{- post.content -}}
+									</div>
+								</div>
+							{% endif %}
+
+							{% if post.blocks %}
+								<div class="container mt-10">
+									<div class="row">
+										<div class="lg:col-10/12 lg:ml-1/12 flex flex-col gap-y-2 lg:gap-y-6">
+											{{- include( 'blocks/blocks.html.twig', { blocks: post.blocks } ) -}}
+										</div>
+									</div>
+								</div>
+							{% endif %}
+						</div>
+					{% endblock %}
+				</main>
 
 				{% block footer %}
 					{{- include( 'footer.html.twig' ) -}}

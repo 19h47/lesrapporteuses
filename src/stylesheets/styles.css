@@ -1,6 +1,7 @@
 @import './base/base';
 
 @import './components/button';
+@import './components/form';
 
 @import './utilities/grid';
 @import './utilities/scrollbar';

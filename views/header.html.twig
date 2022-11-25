@@ -6,7 +6,7 @@
  # @author Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
  #}
 
-<header class="my-8 lg:my-24">
+<header class="my-8 lg:my-24 opacity-0 duration-1000 ease-in-out transition-opacity is-inview:opacity-100" data-scroll>
 	<div class="container">
 		<div class="row">
 			<div class="flex justify-between items-center">
@@ -15,7 +15,7 @@
 				<div class="ml-auto lg:flex lg:gap-x-4">
 					{{- include( 'components/socials.html.twig', { classes: [ 'hidden', 'lg:flex' ] } ) -}}
 
-					{%- embed 'components/button-rounded.html.twig' -%}
+					{%- embed 'components/button-rounded.html.twig' with { attributes: { 'data-module-nav-button': '' } } -%}
 						{% block title %}{{- icon( 'bars', { classes: [ 'w-5', 'h-5' ] } ) -}}{% endblock %}
 					{%- endembed -%}
 				</div>
@@ -23,3 +23,46 @@
 		</div>
 	</div>
 </header>
+
+<nav class="fixed inset-0 z-5 h-full pointer-events-none duration-1000 ease-in-out transition-opacity"
+	data-module-nav="main"
+	style="opacity: 0; visibility: hidden; transition-property: opacity, visibility;"
+>
+	<div class="container h-full">
+		<div class="row h-full pt-[6.75rem] lg:pt-[11.5rem]">
+			<div class="h-full ">
+				<div class="text-white bg-[#1D1D1B] py-8 lg:py-16 h-full pointer-events-auto overflow-auto scrollbar-hide">
+					<div class="row">
+						<div class="col-10/12 ml-1/12">
+							<ul>
+								{% for item in nav_menus.main.get_items() %}
+									<li class="{{ loop.last ? '' : 'mt-1 border-b-[0.125rem] border-current mb-4 lg:mb-8 pb-2 lg:pb-4' }}">
+										<a href="{{ item.link }}" class="text-xl lg:text-4xl font-bold">{{- item.title -}}</a>
+
+										{% if item.master_object().taxonomy == 'case_study_cat' %}
+											<ul class="text-sm font-bold flex mt-1 flex-wrap">
+												{%- for post in item.master_object().posts( { post_type: 'case_study' } ) -%}
+													<li><a href="{{ post.link }}">{{- post.title -}}</a>{{- loop.last ? '' : '&nbsp;-&nbsp;' -}}</li>
+												{%- endfor -%}
+											</ul>
+										{% endif %}
+
+										{% if item.children() %}
+											<ul class="text-sm font-bold flex mt-1 flex-wrap">
+												{% for child in item.children() %}
+													{% if child.link == '#' %}
+														<li><p class="inline">{{- child.title -}}</p>{{- loop.last ? '' : '&nbsp;-&nbsp;' -}}</li>
+													{% endif %}
+												{% endfor %}
+											</ul>
+										{% endif %}
+									</li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>

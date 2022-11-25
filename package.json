@@ -22,6 +22,8 @@
 	},
 	"dependencies": {
 		"@19h47/modular": "19h47/19h47-modular",
+		"formbouncerjs": "^1.4.6",
+		"loconative-scroll": "https://github.com/quentinhocde/loconative-scroll",
 		"modularload": "^1.2.8"
 	},
 	"devDependencies": {

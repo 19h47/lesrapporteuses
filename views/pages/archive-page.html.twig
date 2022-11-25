@@ -1,0 +1,32 @@
+{#
+ # Archive Page
+ #
+ # @package WordPress
+ # @subpackage LesRapporteuses
+ #}
+
+{% extends 'index.html.twig' %}
+
+{% block main %}
+	{{ parent() }}
+
+	<div class="container mt-5">
+		<div class="row">
+			<div class="lg:col-10/12 lg:ml-1/12">
+				<div class="row gap-y-2 lg:gap-y-6">
+					{% for post in posts %}
+						<div class="col-6/12 lg:col-4/12">
+							<article class="pb-[100%] rounded-full relative overflow-hidden" style="background-color: {{ post.meta( 'color' ) | default( '#000000' ) }};">
+								<a class="flex items-center absolute z-2 inset-0 w-full h-full p-5 lg:p-10 text-white text-2xl font-bold" href="{{ post.link }}">
+									{{- post.title -}}
+								</a>
+
+								{{- include( 'components/image.html.twig', { size: 'size-2', classes: [ 'absolute', 'inset-0', 'w-1/2', 'h-full', 'ml-auto', 'object-cover', 'object-center' ], image: post.thumbnail } ) -}}
+							</article>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

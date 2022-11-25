@@ -25,14 +25,24 @@ class Init {
 			Setup\Theme::class,
 			Setup\NavMenu::class,
 			Setup\Supports::class,
+			Setup\Textdomain::class,
 			Setup\WordPress::class,
 			Setup\QueryVars::class,
 			Template\PostStates::class,
 			PostTemplate\BodyClass::class,
+			Post\CaseStudy::class,
+			Post\Message::class,
+			Taxonomy\CaseStudyCat::class,
 			WPImageEditor::class,
 			WPQuery::class,
 			Media::class,
+			Plugins\ACF\Admin\Head::class,
+			Plugins\ACF\AboutPageFields::class,
+			Plugins\ACF\BlocksFields::class,
+			Plugins\ACF\CaseStudyPostFields::class,
 			Plugins\ACF\FrontPageFields::class,
+			Plugins\ACF\MessagePostFields::class,
+			SendMessage::class
 		);
 	}
 

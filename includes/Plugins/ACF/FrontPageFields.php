@@ -98,7 +98,7 @@ class FrontPageFields {
 								'wrapper'       => array(
 									'width' => 50,
 								),
-								'return_format' => 'if',
+								'return_format' => 'id',
 								'library'       => 'all',
 								'preview_size'  => 'medium',
 							),
@@ -148,10 +148,11 @@ class FrontPageFields {
 
 			acf_add_local_field_group(
 				array(
-					'key'      => 'group_front_page',
-					'title'    => __( 'Front Page Fields', 'lesrapporteuses' ),
-					'fields'   => $fields,
-					'location' => $location,
+					'key'            => 'group_front_page',
+					'title'          => __( 'Front Page Fields', 'lesrapporteuses' ),
+					'fields'         => $fields,
+					'location'       => $location,
+					'hide_on_screen' => $hide_on_screen,
 				)
 			);
 

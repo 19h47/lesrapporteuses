@@ -1,0 +1,53 @@
+{#
+ # Input: Text
+ #}
+<div
+	class="{{
+		[
+			'form-row',
+			'form-row-first' in args.class ? 'w-100 w-md-50 pe-md-10px' : '',
+			'form-row-last' in args.class ? 'w-100 w-md-50 ps-md-10px' : '',
+			'form-row-wide' in args.class ? 'w-100' : '',
+			args.required ? 'validate-required' : '',
+		] | merge( args.class | default( [] ) )	| join( ' ' ) | trim
+	}}"
+	data-priority="{{ args.priority | default( '' ) | e }}"
+>
+	<label
+		for="{{ key | e }}"
+		class="{{
+			[
+				'mb-12px block'
+			] | merge( args.label_class | default( [] ) ) | join( ' ' ) | trim
+		}}">
+		{{- args.label | e( 'wp_kses_post' ) -}}
+		{% if args.required %}
+			&nbsp;<abbr class="required text-decoration-none" title="{{ __( 'required', 'woocommerce' ) | e }}">*</abbr>
+		{% endif %}
+	</label>
+
+	<p class="block m-0 relative">
+		<input
+			type="{{ args.type | default( 'text' ) | e }}"
+			class="{{
+				[
+					'input-text',
+					'border',
+					'shadow-focus-focus',
+					'transition-box-shadow',
+					'outline-none-focus',
+					'p-12px',
+					'w-100',
+					'rounded',
+					'block'
+				] | merge( args.input_class | default( [] ) ) | join( ' ' ) | e
+			}}"
+			name="{{ key | e }}"
+			id="{{ key }}"
+			placeholder="{{ args.placeholder | e }}"
+			value="{{ value | e }}"
+			{{ args.required ? 'required' }}
+			{{ args.custom_attributes ? args.custom_attributes | map( ( value, key ) => "#{key}=\"#{value}\"" ) | join( ' ' ) | raw }}
+		/>
+	</p>
+</div>

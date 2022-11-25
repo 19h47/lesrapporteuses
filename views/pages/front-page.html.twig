@@ -14,7 +14,11 @@
 
 			<div class="flex lg:relative lg:z-1">
 				<div class="w-3/12">
-					<div class="w-full pb-[200%] rounded-r-full relative" style="background-color: {{ post.meta( 'hero' ).colors[0] | default( '#000000' ) }};">
+					<div
+						class="w-full pb-[200%] rounded-r-full relative opacity-0 duration-[600ms] ease-in-out transition-opacity is-inview:opacity-100"
+						style="background-color: {{ post.meta( 'hero' ).colors[0] | default( '#000000' ) }};"
+						data-scroll
+					>
 						<div class="absolute inset-0 my-10 mx-7 hidden lg:block">
 							<div class="[writing-mode:tb-rl] -rotate-180 uppercase text-white tracking-widest">
 								{{- __( 'Agency', 'lesrapporteuses' ) -}}
@@ -23,10 +27,25 @@
 					</div>
 				</div>
 				<div class="w-6/12">
-					<div class="w-full pb-[100%] rounded-full relative overflow-hidden" style="background-color: {{ post.meta( 'hero' ).colors[1] | default( '#000000' ) }};">
+					<div
+						class="w-full pb-[100%] rounded-full relative overflow-hidden opacity-0 duration-[400ms] delay-200 ease-in-out transition-opacity is-inview:opacity-100"
+						style="background-color: {{ post.meta( 'hero' ).colors[1] | default( '#000000' ) }};"
+						data-scroll
+					>
 						<div class="absolute inset-0 flex">
 							<div class="w-1/2 text-right text-xl mt-auto mb-16 px-10 hidden lg:block">
-								{{- post.meta('hero').content | nl2br -}}
+								<ul>
+									{%- for cat in get_terms( { taxonomy: 'case_study_cat', hide_empty: true } ) -%}
+										<li>
+											<a
+												class="hover:underline opacity-0 ease-in-out transition-opacity is-inview:opacity-100"
+												href="{{ cat.link }}"
+												data-scroll
+												style="transition-delay: {{ 200 + ( 100 * loop.index ) }}ms; transition-duration: {{ loop.revindex * 100 }}ms;"
+											>{{- cat.name -}}</a>
+										</li>
+									{%- endfor -%}
+								</ul>
 							</div>
 							<div class="ml-auto w-1/2">
 								{{- include( 'components/image.html.twig', { image: post.meta( 'hero' ).images[0], size: 'size-2', classes: [ 'w-full', 'h-full', 'object-cover', 'object-center', 'block' ] } ) -}}
@@ -35,16 +54,20 @@
 					</div>
 				</div>
 				<div class="w-3/12">
-					<div class="w-full pb-[200%] rounded-r-full relative overflow-hidden" style="background-color: {{ post.meta( 'hero' ).colors[2] | default( '#000000' ) }};">
+					<div
+						class="w-full pb-[200%] rounded-r-full relative overflow-hidden opacity-0 duration-200 delay-[400ms] ease-in-out transition-opacity is-inview:opacity-100"
+						style="background-color: {{ post.meta( 'hero' ).colors[2] | default( '#000000' ) }};"
+						data-scroll
+					>
 						{{- include( 'components/image.html.twig', { image: post.meta( 'hero' ).images[1], size: 'size-2', classes: [ 'absolute', 'inset-0', 'w-full', 'h-1/2', 'mt-auto', 'object-cover', 'object-center', 'block' ] } ) -}}
 					</div>
 				</div>
 			</div>
 
-			<div class="lg:absolute lg:z-2 lg:inset-0 text-center lg:text-left mt-8 lg:mt-0">
+			<div class="lg:absolute lg:z-2 lg:inset-0 text-center lg:text-left mt-8 lg:mt-0 pointer-events-none">
 				<div class="row lg:items-center lg:h-full">
 					<div class="lg:col-10/12 lg:ml-1.5/12">
-						<h1 class="text-2xl lg:text-7xl font-bold lg:first-line:text-white text-black">
+						<h1 class="text-2xl lg:text-7xl font-bold lg:first-line:text-white text-black opacity-0 duration-500 ease-in-out delay-[400ms] transition-opacity is-inview:opacity-100" data-scroll>
 							{{- post.meta('hero').title | nl2br -}}
 						</h1>
 					</div>

@@ -25,7 +25,7 @@
 			'justify-center'
 		)
 	}}"
-	{{ attributes ? attributes | map( ( value, key ) => "#{key}=\"#{value}\"" ) | join( ' ' ) | raw }}
+	{{ attributes ? attributes | map( ( value, key ) => ( value == '' ? key : "#{key}=\"#{value}\"" ) ) | join( ' ' ) | raw }}
 >
 	{% block title %}
 		{{- title -}}

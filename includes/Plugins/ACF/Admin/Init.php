@@ -24,30 +24,5 @@ class Init {
 		/**
 		 * Add options pages
 		 */
-	public function add_options_theme() {
-		$parent = acf_add_options_page(
-			array(
-				'page_title' => __( 'Theme Settings', 'creatorfund' ),
-				'capability' => 'edit_posts',
-				'icon_url'   => 'dashicons-admin-settings',
-				'redirect'   => true,
-			)
-		);
-
-		$home = acf_add_options_page(
-			array(
-				'page_title'  => __( 'Home', 'creatorfund' ),
-				'menu_title'  => __( 'Home', 'creatorfund' ),
-				'parent_slug' => $parent['menu_slug'],
-			)
-		);
-
-		$funds = acf_add_options_page(
-			array(
-				'page_title'  => __( 'Fund', 'creatorfund' ),
-				'menu_title'  => __( 'Fund', 'creatorfund' ),
-				'parent_slug' => $parent['menu_slug'],
-			)
-		);
-	}
+	public function add_options_theme() {}
 }
