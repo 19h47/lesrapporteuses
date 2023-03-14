@@ -21,7 +21,27 @@
 									{{- post.title -}}
 								</a>
 
-								{{- include( 'components/image.html.twig', { size: 'size-2', classes: [ 'absolute', 'inset-0', 'w-1/2', 'h-full', 'ml-auto', 'object-cover', 'object-center' ], image: post.thumbnail } ) -}}
+								{{-
+									include(
+										'components/image.html.twig',
+										{
+											size: 'size-2',
+											classes: [
+												'absolute', 'inset-0',
+												'object-cover', 'object-center',
+												random(
+													[
+														'w-1/2 h-full ml-auto' ,
+													 	'w-full h-1/2 mb-auto' ,
+													 	'w-1/2 h-full mr-auto' ,
+													 	'w-full h-1/2 mt-auto'
+													]
+												)
+											],
+											image: post.thumbnail
+										}
+									)
+								-}}
 							</article>
 						</div>
 					{% endfor %}

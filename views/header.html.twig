@@ -37,7 +37,12 @@
 							<ul>
 								{% for item in nav_menus.main.get_items() %}
 									<li class="{{ loop.last ? '' : 'mt-1 border-b-[0.125rem] border-current mb-4 lg:mb-8 pb-2 lg:pb-4' }}">
-										<a href="{{ item.link }}" class="text-xl lg:text-4xl font-bold">{{- item.title -}}</a>
+
+										{% if item.master_object().taxonomy == 'case_study_cat' %}
+											<p class="text-xl lg:text-4xl font-bold">{{- item.title -}}</p>
+										{% else %}
+											<a href="{{ item.link }}" class="text-xl lg:text-4xl font-bold">{{- item.title -}}</a>
+										{% endif %}
 
 										{% if item.master_object().taxonomy == 'case_study_cat' %}
 											<ul class="text-sm font-bold flex mt-1 flex-wrap">

@@ -37,12 +37,12 @@
 								<ul>
 									{%- for cat in get_terms( { taxonomy: 'case_study_cat', hide_empty: true } ) -%}
 										<li>
-											<a
-												class="hover:underline opacity-0 ease-in-out transition-opacity is-inview:opacity-100"
-												href="{{ cat.link }}"
+											<p
+												class="opacity-0 ease-in-out transition-opacity is-inview:opacity-100"
+
 												data-scroll
 												style="transition-delay: {{ 200 + ( 100 * loop.index ) }}ms; transition-duration: {{ loop.revindex * 100 }}ms;"
-											>{{- cat.name -}}</a>
+											>{{- cat.name -}}</p>
 										</li>
 									{%- endfor -%}
 								</ul>
