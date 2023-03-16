@@ -46,7 +46,7 @@
 
 										{% if item.master_object().taxonomy == 'case_study_cat' %}
 											<ul class="text-sm font-bold flex mt-1 flex-wrap">
-												{%- for post in item.master_object().posts( { post_type: 'case_study' } ) -%}
+												{%- for post in item.master_object().posts( { post_type: 'case_study', posts_per_page: -1 } ) -%}
 													<li><a href="{{ post.link }}">{{- post.title -}}</a>{{- loop.last ? '' : '&nbsp;-&nbsp;' -}}</li>
 												{%- endfor -%}
 											</ul>
