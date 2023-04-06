@@ -71,20 +71,20 @@
 		</div>
 	{% endif %}
 
-	{% if post.prev is not empty or post.next is not empty %}
+	{% if post.prev( 'case_study_cat' ) is not empty or post.next( 'case_study_cat' ) is not empty %}
 		<div class="container text-2xs mt-6">
 			<div class="row">
 				<div class="lg:col-10/12 lg:ml-1/12">
 					<div class="flex">
-						{% if post.prev is not empty %}
-							<a href="{{ post.prev.link | e( 'esc_url' ) }}">
-								&lt;&nbsp;{{- __( 'Previous project %s', 'lesrapporteuses' ) | format ( "<strong>#{ post.prev.title }</strong>" ) -}}
+						{% if post.prev( 'case_study_cat' ) is not empty %}
+							<a href="{{ post.prev( 'case_study_cat' ).link | e( 'esc_url' ) }}">
+								&lt;&nbsp;{{- __( 'Previous project %s', 'lesrapporteuses' ) | format ( "<strong>#{ post.prev( 'case_study_cat' ).title }</strong>" ) -}}
 							</a>
 						{% endif %}
 
-						{% if post.next is not empty %}
-							<a class="ml-auto" href="{{ post.next.link | e( 'esc_url' ) }}">
-								{{- __( 'Next project %s', 'lesrapporteuses' ) | format ( "<strong>#{ post.next.title }</strong>" ) -}}&nbsp;&gt;
+						{% if post.next( 'case_study_cat' ) is not empty %}
+							<a class="ml-auto" href="{{ post.next( 'case_study_cat' ).link | e( 'esc_url' ) }}">
+								{{- __( 'Next project %s', 'lesrapporteuses' ) | format ( "<strong>#{ post.next( 'case_study_cat' ).title }</strong>" ) -}}&nbsp;&gt;
 							</a>
 						{% endif %}
 					</div>

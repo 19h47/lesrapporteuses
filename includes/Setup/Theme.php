@@ -34,6 +34,23 @@ class Theme extends Site {
 		add_filter( 'timber/context', array( $this, 'add_to_context' ) );
 		add_filter( 'timber/context', array( $this, 'add_to_theme' ) );
 		add_filter( 'timber/post/classmap', array( $this, 'add_post_classmap' ) );
+
+		add_filter( 'timber/twig/environment/options', array( $this, 'set_environment_options' ), 10, 1 );
+	}
+
+
+	/**
+	 * Set options
+	 *
+	 * @param array $options Array of options.
+	 *
+	 * @return array $options
+	 */
+	public function set_environment_options( array $options ) : array {
+		$options['cache']       = WP_DEBUG ? false : true;
+		$options['auto_reload'] = WP_DEBUG;
+
+		return $options;
 	}
 
 
