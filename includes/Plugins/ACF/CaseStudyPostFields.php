@@ -44,10 +44,19 @@ class CaseStudyPostFields {
 					'title'      => __( 'Case Study Post Fields', 'lesrapporteuses' ),
 					'fields'     => array(
 						array(
-							'key'   => 'field_post_color',
-							'label' => __( 'Color', 'lesrapporteuses' ),
-							'name'  => 'color',
-							'type'  => 'color_picker',
+							'key'     => 'field_post_color',
+							'label'   => __( 'Color', 'lesrapporteuses' ),
+							'name'    => 'color',
+							'type'    => 'color_picker',
+							'wrapper' => array( 'width' => 50 ),
+						),
+						array(
+							'key'           => 'field_post_font_color',
+							'label'         => __( 'Font Color', 'lesrapporteuses' ),
+							'name'          => 'font_color',
+							'type'          => 'color_picker',
+							'default_value' => '#ffffff',
+							'wrapper'       => array( 'width' => 50 ),
 						),
 						array(
 							'key'         => 'field_case_study_post_client',

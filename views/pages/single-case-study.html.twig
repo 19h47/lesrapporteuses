@@ -32,8 +32,11 @@
 					</div>
 
 					<div class="lg:col-7/10 lg:mt-[7.5rem] lg:order-1">
-						<div class="lg:h-[27.5rem] w-full p-5 lg:p-10 lg:flex lg:items-end" style="background-color: {{ post.meta( 'color' ) | default( '#000000' ) }};">
-							<p class="text-sm text-white">{{- post.meta( 'description' ) -}}</p>
+						<div
+							class="lg:h-[27.5rem] w-full p-5 lg:p-10 lg:flex lg:items-end"
+							style="background-color: {{ post.meta( 'color' ) | default( '#000000' ) }}; color: {{ post.meta( 'font_color' ) | default( '#ffffff' ) }};"
+						>
+							<p class="text-sm">{{- post.meta( 'description' ) -}}</p>
 						</div>
 					</div>
 
@@ -76,17 +79,18 @@
 			<div class="row">
 				<div class="lg:col-10/12 lg:ml-1/12">
 					<div class="flex">
-						{% if post.prev( 'case_study_cat' ) is not empty %}
-							<a href="{{ post.prev( 'case_study_cat' ).link | e( 'esc_url' ) }}">
-								&lt;&nbsp;{{- __( 'Previous project %s', 'lesrapporteuses' ) | format ( "<strong>#{ post.prev( 'case_study_cat' ).title }</strong>" ) -}}
+						{% if post.next( 'case_study_cat' ) is not empty %}
+							<a href="{{ post.next( 'case_study_cat' ).link | e( 'esc_url' ) }}">
+								&lt;&nbsp;{{- __( 'Next project %s', 'lesrapporteuses' ) | format ( "<strong>#{ post.next( 'case_study_cat' ).title }</strong>" ) -}}
 							</a>
 						{% endif %}
 
-						{% if post.next( 'case_study_cat' ) is not empty %}
-							<a class="ml-auto" href="{{ post.next( 'case_study_cat' ).link | e( 'esc_url' ) }}">
-								{{- __( 'Next project %s', 'lesrapporteuses' ) | format ( "<strong>#{ post.next( 'case_study_cat' ).title }</strong>" ) -}}&nbsp;&gt;
+						{% if post.prev( 'case_study_cat' ) is not empty %}
+							<a class="ml-auto" href="{{ post.prev( 'case_study_cat' ).link | e( 'esc_url' ) }}">
+								{{- __( 'Previous project %s', 'lesrapporteuses' ) | format ( "<strong>#{ post.prev( 'case_study_cat' ).title }</strong>" ) -}}&nbsp;&gt;
 							</a>
 						{% endif %}
+
 					</div>
 				</div>
 			</div>
