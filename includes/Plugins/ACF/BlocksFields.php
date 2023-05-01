@@ -153,12 +153,12 @@ class BlocksFields {
 											'placeholder' => __( 'Title', 'lesrapporteuses' ),
 										),
 										array(
-											'key'          => 'field_layout_title_list_list',
-											'label'        => __( 'List', 'creatorfund' ),
-											'name'         => 'list',
-											'type'         => 'repeater',
-											'layout'       => 'block',
-											'sub_fields'   => array(
+											'key'        => 'field_layout_title_list_list',
+											'label'      => __( 'List', 'creatorfund' ),
+											'name'       => 'list',
+											'type'       => 'repeater',
+											'layout'     => 'block',
+											'sub_fields' => array(
 												array(
 													'key'  => 'field_layout_title_list_list_title',
 													'label' => __( 'Title', 'lesrapporteuses' ),

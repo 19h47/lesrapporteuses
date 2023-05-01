@@ -5,8 +5,6 @@
  * @package LesRapporteuses
  */
 
-use Timber\{ Timber };
-
 $data                  = Timber::context();
 $data['post']          = Timber::get_post();
 $data['post']->modules = array( 'contact-page' );

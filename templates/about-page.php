@@ -5,8 +5,6 @@
  * @package LesRapporteuses
  */
 
-global $product;
-
 use Timber\{ Timber };
 
 $data                  = Timber::context();
