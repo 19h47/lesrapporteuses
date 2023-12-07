@@ -13,8 +13,6 @@ use Twig\Extra\Html\{ HtmlExtension };
 use Twig\Extra\Intl\{ IntlExtension };
 use Twig\{ TwigFunction };
 
-use WP_Post;
-
 Timber::init();
 Timber::$dirname = array( 'views', 'templates', 'dist' );
 
